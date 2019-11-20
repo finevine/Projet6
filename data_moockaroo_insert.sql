@@ -1,0 +1,11 @@
+\copy orders FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Orders.csv' DELIMITER ',' CSV HEADER;
+\copy client FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Client.csv' DELIMITER ',' CSV HEADER;
+\copy article FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Article.csv' DELIMITER ',' CSV HEADER;
+\copy composition FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Composition.csv' DELIMITER ',' CSV HEADER;
+\copy ingredient FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Ingredient.csv' DELIMITER ',' CSV HEADER;
+\copy stock FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Stock.csv' DELIMITER ',' CSV HEADER;
+\copy address FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Address.csv' DELIMITER ',' CSV HEADER;
+\copy restaurant FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Restaurant.csv' DELIMITER ',' CSV HEADER;
+\copy articlescategories FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/ArticlesCategories.csv' DELIMITER ',' CSV HEADER;
+\copy category FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/Category.csv' DELIMITER ',' CSV HEADER;
+\copy orderline FROM '/Users/vft/Documents/Code-local/Projet6/Moockaroo/OrderLine.csv' DELIMITER ',' CSV HEADER;

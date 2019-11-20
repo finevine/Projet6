@@ -1,8 +1,11 @@
 CREATE TABLE public.restaurant (
 	id SERIAL NOT NULL,
-	name varchar(100) NOT NULL,
+	address_id integer NOT NULL,
 	PRIMARY KEY (id)
 );
+
+CREATE INDEX ON public.restaurant
+	(address_id);
 
 
 COMMENT ON TABLE public.restaurant
@@ -33,11 +36,13 @@ COMMENT ON TABLE public.stock
 
 CREATE TABLE public.article (
 	id SERIAL NOT NULL,
+	name varchar(250) NOT NULL,
 	unitprice real NOT NULL,
 	receipt text NOT NULL,
 	description text NOT NULL,
-	tvarate100 integer NOT NULL,
+	vatrate100 integer NOT NULL,
 	vattype varchar(20) NOT NULL,
+	imgnumber integer,
 	PRIMARY KEY (id)
 );
 
@@ -73,12 +78,18 @@ CREATE TABLE public.orders (
 	dateprepared timestamp without time zone,
 	dateshipped timestamp without time zone,
 	datedelivered timestamp without time zone,
-	restaurant integer NOT NULL,
+	restaurant_id integer NOT NULL,
+	address_id integer NOT NULL,
+	client_id integer NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE INDEX ON public.orders
-	(restaurant);
+	(restaurant_id);
+CREATE INDEX ON public.orders
+	(address_id);
+CREATE INDEX ON public.orders
+	(client_id);
 
 
 COMMENT ON TABLE public.orders
@@ -89,11 +100,15 @@ CREATE TABLE public.client (
 	email varchar(355) NOT NULL,
 	phonenumber varchar(12) NOT NULL,
 	password varchar(50) NOT NULL,
+	address_id integer NOT NULL,
 	PRIMARY KEY (id)
 );
 
 ALTER TABLE public.client
 	ADD UNIQUE (email);
+
+CREATE INDEX ON public.client
+	(address_id);
 
 
 CREATE TABLE public.articlescategories (
@@ -103,13 +118,14 @@ CREATE TABLE public.articlescategories (
 );
 
 
-CREATE TABLE public.adresse (
-	entityname varchar(100) NOT NULL,
-	entitysurname varchar(100),
+CREATE TABLE public.address (
+	id SERIAL NOT NULL,
+	name varchar(100) NOT NULL,
+	surname varchar(100),
 	road varchar(250) NOT NULL,
 	postalcode integer NOT NULL,
 	city varchar(50) NOT NULL,
-	PRIMARY KEY (entityname, road, postalcode, city)
+	PRIMARY KEY (id)
 );
 
 
@@ -121,11 +137,15 @@ CREATE TABLE public.orderline (
 );
 
 
+ALTER TABLE public.restaurant ADD CONSTRAINT FK_restaurant__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
 ALTER TABLE public.stock ADD CONSTRAINT FK_stock__ingredient_id FOREIGN KEY (ingredient_id) REFERENCES public.ingredient(id);
 ALTER TABLE public.stock ADD CONSTRAINT FK_stock__restaurant_id FOREIGN KEY (restaurant_id) REFERENCES public.restaurant(id);
 ALTER TABLE public.composition ADD CONSTRAINT FK_composition__ingredient_id FOREIGN KEY (ingredient_id) REFERENCES public.ingredient(id);
 ALTER TABLE public.composition ADD CONSTRAINT FK_composition__article_id FOREIGN KEY (article_id) REFERENCES public.article(id);
-ALTER TABLE public.orders ADD CONSTRAINT FK_orders__restaurant FOREIGN KEY (restaurant) REFERENCES public.restaurant(id);
+ALTER TABLE public.orders ADD CONSTRAINT FK_orders__restaurant_id FOREIGN KEY (restaurant_id) REFERENCES public.restaurant(id);
+ALTER TABLE public.orders ADD CONSTRAINT FK_orders__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
+ALTER TABLE public.orders ADD CONSTRAINT FK_orders__client_id FOREIGN KEY (client_id) REFERENCES public.client(id);
+ALTER TABLE public.client ADD CONSTRAINT FK_client__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
 ALTER TABLE public.articlescategories ADD CONSTRAINT FK_articlescategories__article_id FOREIGN KEY (article_id) REFERENCES public.article(id);
 ALTER TABLE public.articlescategories ADD CONSTRAINT FK_articlescategories__category_id FOREIGN KEY (category_id) REFERENCES public.category(id);
 ALTER TABLE public.orderline ADD CONSTRAINT FK_orderline__order_id FOREIGN KEY (order_id) REFERENCES public.orders(id);
