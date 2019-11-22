@@ -4,5 +4,5 @@ This project is to create, populate and test a Database for a pizzeria restauran
 It uses [Moockaroo](https://mockaroo.com/)
 
 The ERD (Entity Relation) Diagram is given bellow :
-![MPD](/ERDdiagram.png)
+![MPD](/ERDDiagram.png)
 
