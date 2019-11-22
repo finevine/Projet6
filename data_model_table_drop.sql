@@ -7,5 +7,5 @@ DROP TABLE public.category CASCADE;
 DROP TABLE public.orders CASCADE;
 DROP TABLE public.client CASCADE;
 DROP TABLE public.articlescategories CASCADE;
-DROP TABLE public.address CASCADE;
+DROP TABLE public.addresses CASCADE;
 DROP TABLE public.orderline CASCADE;

@@ -79,17 +79,17 @@ CREATE TABLE public.orders (
 	dateshipped timestamp without time zone,
 	datedelivered timestamp without time zone,
 	restaurant_id integer NOT NULL,
-	address_id integer NOT NULL,
 	client_id integer NOT NULL,
+	address_id integer NOT NULL,
 	PRIMARY KEY (id)
 );
 
 CREATE INDEX ON public.orders
 	(restaurant_id);
 CREATE INDEX ON public.orders
-	(address_id);
-CREATE INDEX ON public.orders
 	(client_id);
+CREATE INDEX ON public.orders
+	(address_id);
 
 
 COMMENT ON TABLE public.orders
@@ -118,7 +118,7 @@ CREATE TABLE public.articlescategories (
 );
 
 
-CREATE TABLE public.address (
+CREATE TABLE public.addresses (
 	id SERIAL NOT NULL,
 	name varchar(100) NOT NULL,
 	surname varchar(100),
@@ -137,15 +137,15 @@ CREATE TABLE public.orderline (
 );
 
 
-ALTER TABLE public.restaurant ADD CONSTRAINT FK_restaurant__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
+ALTER TABLE public.restaurant ADD CONSTRAINT FK_restaurant__address_id FOREIGN KEY (address_id) REFERENCES public.addresses(id);
 ALTER TABLE public.stock ADD CONSTRAINT FK_stock__ingredient_id FOREIGN KEY (ingredient_id) REFERENCES public.ingredient(id);
 ALTER TABLE public.stock ADD CONSTRAINT FK_stock__restaurant_id FOREIGN KEY (restaurant_id) REFERENCES public.restaurant(id);
 ALTER TABLE public.composition ADD CONSTRAINT FK_composition__ingredient_id FOREIGN KEY (ingredient_id) REFERENCES public.ingredient(id);
 ALTER TABLE public.composition ADD CONSTRAINT FK_composition__article_id FOREIGN KEY (article_id) REFERENCES public.article(id);
 ALTER TABLE public.orders ADD CONSTRAINT FK_orders__restaurant_id FOREIGN KEY (restaurant_id) REFERENCES public.restaurant(id);
-ALTER TABLE public.orders ADD CONSTRAINT FK_orders__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
 ALTER TABLE public.orders ADD CONSTRAINT FK_orders__client_id FOREIGN KEY (client_id) REFERENCES public.client(id);
-ALTER TABLE public.client ADD CONSTRAINT FK_client__address_id FOREIGN KEY (address_id) REFERENCES public.address(id);
+ALTER TABLE public.orders ADD CONSTRAINT FK_orders__address_id FOREIGN KEY (address_id) REFERENCES public.addresses(id);
+ALTER TABLE public.client ADD CONSTRAINT FK_client__address_id FOREIGN KEY (address_id) REFERENCES public.addresses(id);
 ALTER TABLE public.articlescategories ADD CONSTRAINT FK_articlescategories__article_id FOREIGN KEY (article_id) REFERENCES public.article(id);
 ALTER TABLE public.articlescategories ADD CONSTRAINT FK_articlescategories__category_id FOREIGN KEY (category_id) REFERENCES public.category(id);
 ALTER TABLE public.orderline ADD CONSTRAINT FK_orderline__order_id FOREIGN KEY (order_id) REFERENCES public.orders(id);

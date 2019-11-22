@@ -9,13 +9,16 @@ csv_files = [f for f in csv_folder if splitext(f)[-1] == ".csv"]
 csv_folder.close()
 
 # OPEN AND CLEAN .SQL FILE
-f = open("data_moockaroo_insert.sql","w+")
+f = open("data_moockaroo_insert.sql", "w+")
 f.truncate(0)
 
 # ITERATE IN CSV_FILES LIST
+# To begin the insertion and stop if there is an error (auto rollback)
+f.write("BEGIN;")
 for file in csv_files:
     f.write(
-        "\copy " + splitext(file.name)[0].lower() + 
-        " FROM '"+ file.path +"' DELIMITER ',' CSV HEADER;\n"
+        "\copy " + splitext(file.name)[0].lower() +
+        " FROM '" + file.path + "' DELIMITER ',' CSV HEADER;\n"
         )
 
+f.write("COMMIT;")
