@@ -1,3 +1,5 @@
+--T1. ma commande peut-elle contenir plusieurs pizzas ?
+
 SELECT COUNT(*) FROM (
     -- bellow gives something like :
     -- count | order_id 
