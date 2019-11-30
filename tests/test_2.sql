@@ -1,7 +1,7 @@
 --T2. puis-je retrouver le contenu d'une commande ?
 
 SELECT
-    orderline.Order_ID, article.name
+    orderline.Order_ID, orderline.quantity, article.name
 FROM
     orderline
     LEFT JOIN article

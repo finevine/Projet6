@@ -1,12 +1,7 @@
+--T5. puis-je afficher les commandes en attente d'un client ?
+
 SELECT
-   ARRAY_AGG(Orders.ID) AS orders_not_delivered
+   Orders.ID
 FROM
    Orders
-WHERE (Orders.DateDelivered IS NULL AND Orders.Client_ID = 75);
-
-
-SELECT Addresses.Name, Client.ID AS Client_ID
-FROM Addresses 
-RIGHT JOIN Client
-ON Addresses.id = Client.address_ID
-WHERE Client.ID = 75;
+WHERE (Orders.DateDelivered IS NULL AND Orders.Client_ID = 4);
