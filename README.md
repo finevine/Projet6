@@ -4,7 +4,7 @@ This project is to create, populate and test a Database for a pizzeria restauran
 It uses [Moockaroo](https://mockaroo.com/) (it would have been possible to use [Faker](https://pypi.org/project/Faker/))
 
 The ERD (Entity Relation) Diagram is given bellow :
-![MPD](/ERDDiagram.png)
+![MPD](/_ERDDiagram.png)
 
 Good ressources for learning UML are :
 - [Learn UML Developpez.net](https://laurent-audibert.developpez.com/Cours-UML/)
