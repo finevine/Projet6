@@ -133,6 +133,7 @@ CREATE TABLE public.orderline (
 	order_id integer NOT NULL,
 	article_id integer NOT NULL,
 	quantity integer NOT NULL,
+	unitpricetaxed real NOT NULL,
 	PRIMARY KEY (order_id, article_id)
 );
 

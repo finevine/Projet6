@@ -22,13 +22,3 @@ WITH NotEnough AS(
     HAVING
         COUNT(NotEnough.ingredient_ID) = 0
     ORDER BY Article.id;
-
-SELECT
-    Composition.article_id, Composition.ingredient_ID, Stock.quantity AS available, Composition.quantity AS needed
-FROM
-    Composition, Stock
-WHERE
-    Composition.quantity > Stock.quantity
-    AND Stock.ingredient_ID = Composition.ingredient_ID
-    AND Stock.restaurant_ID = 3
-ORDER BY Composition.article_id;
