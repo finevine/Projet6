@@ -1,5 +1,5 @@
 ALTER TABLE stock ALTER COLUMN quantity DROP NOT NULL;
--- also possible to SET NOT NULL
+-- also possible to "SET NOT NULL"
 
 UPDATE Stock SET
     Quantity = 0
