@@ -26,7 +26,7 @@ COMMENT ON TABLE public.ingredient
 CREATE TABLE public.stock (
 	ingredient_id integer NOT NULL,
 	restaurant_id integer NOT NULL,
-	quantity integer NOT NULL,
+	quantity integer,
 	PRIMARY KEY (ingredient_id, restaurant_id)
 );
 
