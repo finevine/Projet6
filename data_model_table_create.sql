@@ -99,7 +99,7 @@ CREATE TABLE public.client (
 	id SERIAL NOT NULL,
 	email varchar(355) NOT NULL,
 	phonenumber varchar(12) NOT NULL,
-	password varchar(50) NOT NULL,
+	password char(64) NOT NULL,
 	address_id integer NOT NULL,
 	PRIMARY KEY (id)
 );
